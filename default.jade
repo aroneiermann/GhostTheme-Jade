@@ -1,0 +1,41 @@
+mixin author(author)
+  h1
+    a(href="/author/" + author.slug) #{author.name}
+  - if(author.bio){
+    p #{author.bio}
+  - } else {
+    p No bio
+  - }
+  - if(author.website){
+    p #{author.website}
+  - } else {
+    p No website
+  - }
+  - if(author.location){
+    p #{author.location}
+  - } else {
+    p No location
+  - }
+
+mixin getFirstWords(content, words)
+  - function truncate( value, arg ) {
+  -     var value_arr = value.split( ' ' );
+  -     if( arg < value_arr.length ) {
+  -         value = value_arr.slice( 0, arg ).join( ' ' );
+  -     }
+  -     return value;
+  - }
+  | #{truncate(content, words)}
+
+mixin tags(tags)
+  - if(tags){
+    ul(class="tags")
+      each tag in tags
+        li
+          a(href="/tag/"+tag.slug) #{tag.name}
+  - }
+
+doctype html
+html
+  body
+    block body

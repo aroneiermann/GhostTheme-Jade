@@ -1,0 +1,19 @@
+extends ./default.jade
+
+block body
+  - if(author){
+    +author(author)
+  - } else if(tag) {
+    h1 #{tag.name}
+    - if(tag.description){
+      p #{tag.description}
+    - }
+  - } else {
+    h1 Index
+  - }
+  each post in posts
+    div(class="post")
+      h2
+        a(href=post.url) #{post.title}
+      +tags(post.tags)
+      +getFirstWords(post.html, 40)

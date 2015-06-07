@@ -1,0 +1,10 @@
+extends ./default.jade
+
+block body
+  header
+    h1 #{post.title}
+    +tags(post.tags)
+
+  main !{post.html}
+  section
+    +author(post.author)
